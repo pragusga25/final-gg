@@ -26,6 +26,19 @@ body {
   min-height: 100vh;
 }
 
+body::-webkit-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none;
+  width: 0 !important;
+}
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
 .elipsis-3 {
   display: -webkit-box;
   max-width: 280px;
