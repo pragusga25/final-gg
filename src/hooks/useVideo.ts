@@ -6,10 +6,9 @@ import { useDebounce } from '.';
 
 export const useVideo = () => useContext(VideoContext);
 
-export const useVideosQuery = (enabled = true, search?: string) => {
+export const useVideosQuery = (search?: string) => {
   const query = useQuery(['videos', search], {
     queryFn: () => getVideos(search),
-    enabled,
   });
 
   return query;
@@ -23,10 +22,10 @@ export const useVideoQuery = (id: string) => {
   return query;
 };
 
-export const useVideosSearch = (enabled = true) => {
+export const useVideosSearch = () => {
   const [searchText, setSearchText] = useState('');
   const debounceText = useDebounce(searchText, 400);
-  const query = useVideosQuery(enabled, debounceText);
+  const query = useVideosQuery(debounceText);
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const searchValue = e.target.value;

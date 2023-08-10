@@ -35,7 +35,9 @@
       "@/utils/*": ["utils/*"],
       "@/utils": ["utils"],
       "@/contexts/*": ["contexts/*"],
-      "@/contexts": ["contexts"]
+      "@/contexts": ["contexts"],
+      "@/types/*": ["types/*"],
+      "@/types": ["types"]
     }
   },
   "include": ["src"],

@@ -5,13 +5,24 @@ import {
   GetProductsData,
   GetVideoData,
   GetVideosData,
+  LoginData,
+  RegisterData,
 } from '@/models';
+import { LoginPayload, RegisterPayload } from '@/types';
 
-const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_BASE_URL}`,
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}`;
+
+export const api = axios.create({
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+export const apiPrivate = axios.create({
+  baseURL: API_BASE_URL,
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
 });
 
 export const getVideos = (search?: string): Promise<GetVideosData> =>
@@ -32,3 +43,9 @@ export const getComments = (videoId: string): Promise<GetCommentsData> =>
 
 export const getProducts = (videoId: string): Promise<GetProductsData> =>
   api.get(`/videos/${videoId}/products`).then((res) => res.data.data);
+
+export const login = (payload: LoginPayload): Promise<LoginData> =>
+  apiPrivate.post('/auth/login', payload).then((res) => res.data.data);
+
+export const register = (payload: RegisterPayload): Promise<RegisterData> =>
+  apiPrivate.post('/auth/register', payload).then((res) => res.data.data);
