@@ -1,4 +1,4 @@
-import { CreateComment } from '@/models';
+import { CreateComment } from '@/types';
 
 export const validateComment = (data: CreateComment) => {
   let { comment, username } = data;
