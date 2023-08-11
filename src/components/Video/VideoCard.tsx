@@ -19,7 +19,7 @@ export const VideoCard: FC<VideoCardProps> = ({
         }}
       >
         <img
-          className="w-full h-48 object-cover"
+          className="w-full h-40 tn:h-48 object-cover"
           src={thumbnailUrl}
           alt={title}
         />
