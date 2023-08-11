@@ -15,7 +15,7 @@ export const Watch = () => {
   return (
     <CommentModalProvider>
       <VideoPlayer {...data} />
-      <div className="mt-8">
+      <div className="mt-8 pb-5">
         <ProductList />
       </div>
       <CommentModal />
