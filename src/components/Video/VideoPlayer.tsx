@@ -27,10 +27,13 @@ export const VideoPlayer: FC<VideoPlayerProps> = ({
 
       <div className="mt-5">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-semibold text-left text-white dark:text-gray-300">
+          <h1 className="text-lg sm:text-2xl font-semibold text-left text-white dark:text-gray-300">
             {title}
           </h1>
-          <button onClick={onOpen} className="btn btn-ghost ml-4">
+          <button
+            onClick={onOpen}
+            className="btn text-sm sm:text-base btn-ghost ml-4"
+          >
             See Comments
           </button>
         </div>
