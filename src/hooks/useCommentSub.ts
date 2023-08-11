@@ -3,20 +3,14 @@ import { useEffect, useState } from 'react';
 import { socket } from '@/api';
 import { WsComment } from '@/types';
 import { useAuth } from '@/hooks';
-import { parseCommentsData } from '../utils';
+import { parseCommentsData } from '@/utils';
 
 export const useCommentSub = (videoId: string) => {
   const [isConnected, setIsConnected] = useState(false);
   const queryClient = useQueryClient();
   const {
-    auth: { accessToken, user },
+    auth: { user },
   } = useAuth();
-
-  const addComment = (comment: string) => {
-    if (accessToken && isConnected) {
-      socket.emit(`comment`, { comment, accessToken, videoId });
-    }
-  };
 
   useEffect(() => {
     const onConnect = () => {
@@ -31,7 +25,7 @@ export const useCommentSub = (videoId: string) => {
 
     const onComment = (data: WsComment) => {
       queryClient.setQueryData(
-        [videoId, 'comments'],
+        [videoId, 'comments', user?.username],
         (oldData: WsComment[] | undefined) => {
           if (!oldData) return [];
           return parseCommentsData([...oldData, data], user?.username);
@@ -50,5 +44,5 @@ export const useCommentSub = (videoId: string) => {
     };
   }, [queryClient, videoId, socket]);
 
-  return { isConnected, addComment };
+  return { isConnected };
 };

@@ -1,4 +1,4 @@
-import { GetCommentsData, GetProductsData } from '@/types';
+import { GetCommentData, GetCommentsData, GetProductsData } from '@/types';
 
 export const parseProductsData = (data: GetProductsData) => {
   return data.map(({ link, ...rest }) => ({
@@ -11,37 +11,52 @@ export const parseProductsData = (data: GetProductsData) => {
   }));
 };
 
+export const parseCommentData = (
+  data: GetCommentData,
+  currentUsername?: string
+) => {
+  const { timestamp, ...rest } = data;
+  const time = new Date(timestamp);
+  const isToday = time.toLocaleDateString() === new Date().toLocaleDateString();
+
+  const showTime = isToday
+    ? time.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+      })
+    : time.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      });
+
+  const isMine = currentUsername === rest.username;
+
+  return {
+    ...rest,
+    timestamp,
+    showTime,
+    isMine,
+    uAvatar: rest.username.slice(0, 2).toUpperCase(),
+  };
+};
+
 export const parseCommentsData = (
   data: GetCommentsData,
-  currentUserName?: string
+  currentUsername?: string
 ) => {
   return data.map(({ timestamp, ...rest }, idx) => {
     const isLastComment = idx === data.length - 1;
-    const time = new Date(timestamp);
-    const isToday =
-      time.toLocaleDateString() === new Date().toLocaleDateString();
-
-    const showTime = isToday
-      ? time.toLocaleTimeString('en-US', {
-          hour: 'numeric',
-          minute: 'numeric',
-        })
-      : time.toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-        });
-
-    const isMine = currentUserName === rest.username;
+    const parsedComment = parseCommentData(
+      { ...rest, timestamp },
+      currentUsername
+    );
 
     return {
-      ...rest,
-      timestamp,
-      showTime,
+      ...parsedComment,
       isLastComment,
-      isMine,
     };
   });
 };

@@ -4,8 +4,9 @@ import { useContext } from 'react';
 import { LoginPayload, RegisterPayload } from '@/types';
 import { login, register } from '@/api';
 import { useAuthModal } from '@/hooks';
-import { toast } from 'react-hot-toast/headless';
+import { toast } from 'react-hot-toast';
 import { apiPrivate } from '@/api';
+import { generateErrorMessage } from '@/utils';
 
 export const useAuth = () => useContext(AuthContext);
 
@@ -20,6 +21,7 @@ export const useLogin = () => {
       setAuth(data);
       onClose();
       queryClient.clear();
+      toast.success('Successfully logged in');
     },
     onError: () => {
       toast.error('Invalid credentials');
@@ -41,8 +43,9 @@ export const useRegister = () => {
       onClose();
       queryClient.clear();
     },
-    onError: () => {
-      toast.error('Invalid credentials');
+    onError: (err) => {
+      const errMessage = generateErrorMessage(err);
+      toast.error(errMessage || 'Something went wrong');
     },
   });
 
@@ -63,6 +66,7 @@ export const useLogout = () => {
     } finally {
       setAuth({});
       queryClient.clear();
+      toast.success('Successfully logged out');
     }
   };
 

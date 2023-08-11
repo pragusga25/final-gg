@@ -1,5 +1,5 @@
 import { Credentials } from '@/types';
-import { ChangeEvent, MouseEventHandler, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, MouseEventHandler, useState } from 'react';
 import { useLogin, useRegister } from '@/hooks';
 
 export const useAuthForm = (isLogin = true) => {
@@ -47,14 +47,17 @@ export const useAuthForm = (isLogin = true) => {
     }
   };
 
+  const onEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !disableBtn) {
+      onSubmit();
+    }
+  };
+
   const resetCreds = () => {
     setCreds({ username: '', password: '' });
   };
 
-  const onSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-
+  const onSubmit = async () => {
     mutate(creds);
     resetCreds();
   };
@@ -73,5 +76,6 @@ export const useAuthForm = (isLogin = true) => {
     onSubmit,
     disableBtn,
     isLoading,
+    onEnterPress,
   };
 };

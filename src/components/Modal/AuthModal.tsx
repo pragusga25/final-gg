@@ -9,7 +9,11 @@ export const AuthModal = () => {
 
   const tabStyle = 'tab w-1/2 tab-bordered';
   return (
-    <ContainerModal id="authModal" closeBtnRef={closeBtnRef}>
+    <ContainerModal
+      id="authModal"
+      className="max-w-md"
+      closeBtnRef={closeBtnRef}
+    >
       <div className="tabs w-full mb-2">
         <a
           className={cn(tabStyle, isLoginActive && 'tab-active')}

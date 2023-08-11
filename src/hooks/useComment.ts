@@ -9,7 +9,7 @@ export const useCommentsQuery = (videoId: string) => {
     auth: { user },
   } = useAuth();
 
-  const query = useQuery([videoId, 'comments'], {
+  const query = useQuery([videoId, 'comments', user?.username], {
     queryFn: () =>
       getComments(videoId).then((data) =>
         parseCommentsData(data, user?.username)

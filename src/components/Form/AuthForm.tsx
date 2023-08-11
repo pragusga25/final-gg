@@ -1,6 +1,6 @@
 import { useAuthForm } from '@/hooks';
 import { cn } from '@/utils';
-import { FC } from 'react';
+import { ChangeEvent, FC, KeyboardEvent } from 'react';
 
 type AuthFormProps = {
   isLogin: boolean;
@@ -14,61 +14,85 @@ export const AuthForm: FC<AuthFormProps> = ({ isLogin }) => {
     onSubmit,
     disableBtn,
     isLoading,
+    onEnterPress,
     errors: { username: usernameError, password: passwordError },
   } = useAuthForm(isLogin);
 
   return (
     <div className="w-full">
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text">Username</span>
-        </label>
-        <input
-          type="text"
-          placeholder="Type here"
-          className="input input-bordered input-accent w-full"
-          value={username}
-          onChange={onUsernameChange}
-        />
-        {!!usernameError && (
-          <span className="text-sm text-left ml-1 mt-2 text-red-500">
-            {usernameError}
-          </span>
-        )}
-      </div>
+      <Input
+        value={username}
+        onChange={onUsernameChange}
+        onKeyDown={onEnterPress}
+        error={usernameError}
+        label="Username"
+      />
 
-      <div className="form-control mt-4">
-        <label className="label">
-          <span className="label-text">Password</span>
-        </label>
-        <input
-          type="password"
-          placeholder="Type here"
-          className="input input-bordered input-accent w-full"
-          value={password}
-          onChange={onPasswordChange}
-        />
-        {!!passwordError && (
-          <label className="label">
-            <span className="label-text-alt ml-1 mt-2 text-red-500">
-              {passwordError}
-            </span>
-          </label>
-        )}
-      </div>
+      <Input
+        value={password}
+        onChange={onPasswordChange}
+        onKeyDown={onEnterPress}
+        error={passwordError}
+        label="Password"
+        className="mt-4"
+        type="password"
+      />
 
-      <button
-        type="button"
-        className={cn(
-          'w-full mt-6 btn btn-outline btn-success',
-          disableBtn && 'btn-disabled',
-          isLoading && 'loading'
-        )}
-        onClick={onSubmit}
-        disabled={disableBtn}
-      >
-        {isLogin ? 'Login' : 'Register'}
-      </button>
+      <div className="mt-5">
+        <button
+          type="button"
+          className={cn(
+            'w-full btn btn-outline btn-success',
+            disableBtn && 'btn-disabled',
+            isLoading && 'loading'
+          )}
+          onClick={onSubmit}
+          disabled={disableBtn}
+        >
+          {isLogin ? 'Login' : 'Register'}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+type InputProps = {
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
+  error?: string;
+  label: string;
+  className?: string;
+  type?: 'text' | 'password';
+};
+
+const Input: FC<InputProps> = ({
+  value,
+  onChange,
+  onKeyDown,
+  error,
+  label,
+  className,
+  type = 'text',
+}) => {
+  return (
+    <div className={cn('form-control', className)}>
+      <label className="label">
+        <span className="label-text">{label}</span>
+      </label>
+      <input
+        type={type}
+        placeholder="Type here"
+        className="input input-bordered input-accent w-full"
+        value={value}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+      />
+      {!!error && (
+        <label className="label">
+          <span className="label-text-alt ml-1 mt-2 text-red-500">{error}</span>
+        </label>
+      )}
     </div>
   );
 };

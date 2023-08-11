@@ -26,7 +26,7 @@ export const VideoCard: FC<VideoCardProps> = ({
 
         <div className="px-4 py-3 h-20">
           <h3 className="text-base font-semibold text-left text-white dark:text-gray-300 elipsis-3 max-w-xs">
-            {title} {thumbnailColor}
+            {title}
           </h3>
         </div>
       </div>

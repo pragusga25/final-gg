@@ -37,7 +37,9 @@
       "@/contexts/*": ["contexts/*"],
       "@/contexts": ["contexts"],
       "@/types/*": ["types/*"],
-      "@/types": ["types"]
+      "@/types": ["types"],
+      "@/constants/*": ["constants/*"],
+      "@/constants": ["constants"]
     }
   },
   "include": ["src"],

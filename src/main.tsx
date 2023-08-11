@@ -20,13 +20,13 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <Toaster position="top-center" reverseOrder={false} />
     <QueryClientProvider client={queryClient}>
       <SkeletonTheme baseColor="#202020" highlightColor="#444">
         <BrowserRouter>
           <AuthModalProvider>
             <AuthProvider>
               <PersistLogin>
-                <Toaster position="top-center" reverseOrder={false} />
                 <App />
               </PersistLogin>
             </AuthProvider>
