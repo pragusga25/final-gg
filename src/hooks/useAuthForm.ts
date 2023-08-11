@@ -1,5 +1,5 @@
 import { Credentials } from '@/types';
-import { ChangeEvent, KeyboardEvent, MouseEventHandler, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { useLogin, useRegister } from '@/hooks';
 
 export const useAuthForm = (isLogin = true) => {
