@@ -8,13 +8,13 @@ export const CommentForm = () => {
 
   const { isLoggedIn } = useAuth();
   const { isConnected } = useCommentSub(id);
-  const { comment, onChange, sendComment, onEnterPress } = useCommentForm(id);
+  const { comment, onChange, sendComment, onEnterPress, disabled } =
+    useCommentForm(id);
 
   let btnText = 'Login to comment';
-  let btnClassName = '';
+
   if (isLoggedIn) {
     btnText = isConnected ? 'Send' : 'Connecting...';
-    btnClassName = isConnected ? '' : 'loading loading-spinner';
   }
 
   return (
@@ -35,10 +35,10 @@ export const CommentForm = () => {
         </div>
 
         <button
-          className={cn('w-full btn btn-accent mt-4', btnClassName)}
+          className={cn('w-full btn btn-accent mt-4')}
           type="button"
           onClick={sendComment}
-          disabled={!isLoggedIn || !isConnected}
+          disabled={!isLoggedIn || !isConnected || disabled}
         >
           {btnText}
         </button>

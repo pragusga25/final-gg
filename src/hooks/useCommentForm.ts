@@ -28,5 +28,7 @@ export const useCommentForm = (videoId: string) => {
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
     setComment(e.target.value.trim());
 
-  return { comment, onChange, sendComment, onEnterPress };
+  const disabled = comment.length === 0 || comment.length > 255;
+
+  return { comment, onChange, sendComment, onEnterPress, disabled };
 };
