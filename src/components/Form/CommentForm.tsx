@@ -8,8 +8,7 @@ export const CommentForm = () => {
 
   const { isLoggedIn } = useAuth();
   const { isConnected } = useCommentSub(id);
-  const { comment, onChange, sendComment, onEnterPress, disabled } =
-    useCommentForm(id);
+  const { comment, onChange, sendComment, onEnterPress } = useCommentForm(id);
 
   let btnText = 'Login to comment';
 
@@ -30,7 +29,6 @@ export const CommentForm = () => {
             placeholder="Type your comment"
             className="textarea textarea-bordered textarea-accent w-full"
             onKeyDown={onEnterPress}
-            disabled={!isLoggedIn || !isConnected}
           />
         </div>
 
@@ -38,7 +36,6 @@ export const CommentForm = () => {
           className={cn('w-full btn btn-accent mt-4')}
           type="button"
           onClick={sendComment}
-          disabled={!isLoggedIn || !isConnected || disabled}
         >
           {btnText}
         </button>
