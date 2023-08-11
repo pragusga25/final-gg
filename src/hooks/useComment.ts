@@ -1,11 +1,19 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getComments, postComment } from '@/api';
-import { CreateComment } from '@/models';
-import { validateComment } from '@/utils';
+import { CreateComment } from '@/types';
+import { parseCommentsData, validateComment } from '@/utils';
+import { useAuth } from '@/hooks';
 
 export const useCommentsQuery = (videoId: string) => {
-  const query = useQuery(['comments', videoId], {
-    queryFn: () => getComments(videoId),
+  const {
+    auth: { user },
+  } = useAuth();
+
+  const query = useQuery([videoId, 'comments'], {
+    queryFn: () =>
+      getComments(videoId).then((data) =>
+        parseCommentsData(data, user?.username)
+      ),
   });
 
   return query;
@@ -20,7 +28,7 @@ export const useCommentMutation = (videoId: string) => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(['comments', videoId]);
+        queryClient.invalidateQueries([videoId, 'comments']);
       },
     }
   );

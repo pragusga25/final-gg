@@ -1,3 +1,4 @@
+import { useCommentModal } from '@/hooks';
 import { Video } from '@/models';
 import { FC } from 'react';
 
@@ -9,6 +10,8 @@ export const VideoPlayer: FC<VideoPlayerProps> = ({
   description,
   thumbnailColor,
 }) => {
+  const { onOpen } = useCommentModal();
+
   return (
     <div className="mx-auto text-white">
       <iframe
@@ -20,12 +23,17 @@ export const VideoPlayer: FC<VideoPlayerProps> = ({
         style={{
           boxShadow: `1px 9px 73px -17px ${thumbnailColor}`,
         }}
-      ></iframe>
+      />
 
       <div className="mt-5">
-        <h1 className="text-2xl font-semibold text-left text-white dark:text-gray-300">
-          {title}
-        </h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-semibold text-left text-white dark:text-gray-300">
+            {title}
+          </h1>
+          <button onClick={onOpen} className="btn btn-ghost ml-4">
+            See Comments
+          </button>
+        </div>
 
         <details className="collapse bg-base-100 shadow-slate-400 shadow-inner mt-4">
           <summary className="collapse-title text-xl font-medium">

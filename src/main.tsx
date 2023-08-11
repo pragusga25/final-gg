@@ -10,7 +10,13 @@ import { PersistLogin } from '@/components/PersistLogin';
 import { AuthModalProvider, AuthProvider } from '@/contexts';
 import { Toaster } from 'react-hot-toast';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
