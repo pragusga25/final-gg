@@ -11,8 +11,10 @@ export const CommentForm = () => {
   const { comment, onChange, sendComment, onEnterPress } = useCommentForm(id);
 
   let btnText = 'Login to comment';
+  let btnClassName = '';
   if (isLoggedIn) {
     btnText = isConnected ? 'Send' : 'Connecting...';
+    btnClassName = isConnected ? 'loading' : 'btn-disabled';
   }
 
   return (
@@ -33,12 +35,10 @@ export const CommentForm = () => {
         </div>
 
         <button
-          className={cn(
-            'w-full btn btn-accent mt-4',
-            !isLoggedIn && 'cursor-not-allowed'
-          )}
+          className={cn('w-full btn btn-accent mt-4', btnClassName)}
           type="button"
           onClick={sendComment}
+          disabled={!isLoggedIn || !isConnected}
         >
           {btnText}
         </button>

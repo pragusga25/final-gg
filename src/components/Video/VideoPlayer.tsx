@@ -39,11 +39,11 @@ export const VideoPlayer: FC<VideoPlayerProps> = ({
         </div>
 
         <details className="collapse bg-base-100 shadow-slate-400 shadow-inner mt-4">
-          <summary className="collapse-title text-xl font-medium">
+          <summary className="collapse-title text-base tn:text-xl font-medium">
             Description
           </summary>
           <div className="collapse-content">
-            <p className="text-base mt-2 font-normal text-left text-white dark:text-gray-300">
+            <p className="text-sm tn:text-base mt-2 font-normal text-left text-white dark:text-gray-300">
               {description}
             </p>
           </div>
