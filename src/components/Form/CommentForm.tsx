@@ -14,7 +14,7 @@ export const CommentForm = () => {
   let btnClassName = '';
   if (isLoggedIn) {
     btnText = isConnected ? 'Send' : 'Connecting...';
-    btnClassName = isConnected ? 'loading' : 'btn-disabled';
+    btnClassName = isConnected ? '' : 'loading loading-spinner';
   }
 
   return (
