@@ -38,11 +38,11 @@ export const CommentModal = () => {
   return (
     <ContainerModal
       id="commentModal"
-      className="max-w-3xl"
+      className="max-w-lg"
       closeBtnRef={closeBtnRef}
       modalBoxClassName="overflow-hidden flex flex-col"
     >
-      <div className="overflow-y-auto" id="comments">
+      <div className="overflow-y-auto mt-3" id="comments">
         {data.map(
           ({ id, comment, username, isLastComment, showTime, isMine }) => {
             return (
@@ -75,7 +75,7 @@ export const CommentModal = () => {
         )}
       </div>
 
-      <div className="shadow-lg mt-4 px-2 sm:px-5 py-3">
+      <div className="mt-4 px-2 sm:px-5 py-3">
         <div>
           <div className="form-control">
             <label className="label">

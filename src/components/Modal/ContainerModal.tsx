@@ -19,8 +19,8 @@ export const ContainerModal: FC<ContainerModalProps> = ({
   id,
 }) => {
   return (
-    <dialog id={id} className={cn('modal max-w-md mx-auto', className)}>
-      <form method="dialog" className={cn('modal-box', modalBoxClassName, id)}>
+    <dialog id={id} className={cn(className, 'modal max-w-md mx-auto')}>
+      <form method="dialog" className={cn('modal-box', modalBoxClassName)}>
         <button
           className={cn(
             'btn btn-sm btn-circle btn-ghost absolute z-10 right-2 top-2',

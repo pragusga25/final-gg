@@ -20,7 +20,10 @@ export const useRefreshToken = () => {
       return response.data.data.accessToken;
     } catch (error) {
       if (error instanceof AxiosError) {
-        if (error.response?.status === 401) {
+        if (
+          error.response?.status === 401 &&
+          error.response.data?.error?.code === 'auth/token-expired'
+        ) {
           await logout();
         }
 
