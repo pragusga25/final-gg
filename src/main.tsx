@@ -20,7 +20,11 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Toaster position="top-center" reverseOrder={false} />
+    <Toaster
+      position="top-center"
+      reverseOrder={false}
+      containerClassName="z-[51]"
+    />
     <QueryClientProvider client={queryClient}>
       <SkeletonTheme baseColor="#202020" highlightColor="#444">
         <BrowserRouter>
