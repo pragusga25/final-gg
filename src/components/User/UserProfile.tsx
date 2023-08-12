@@ -1,51 +1,41 @@
 import { useUserQuery } from '@/hooks';
-import { useParams } from 'react-router-dom';
 import { UserAvatar } from './UserAvatar';
-import { useState } from 'react';
-import { UserAvatarEdit } from './UserAvatarEdit';
+import { FC } from 'react';
+import { UserProfileWrapper } from './UserProfileWrapper';
 
-export const UserProfile = () => {
-  const { username: uname } = useParams<{ username: string }>();
-  if (!uname) return null;
+type UserProfileProps = {
+  username: string;
+  onEdit: () => unknown;
+  isMe?: boolean;
+};
 
-  const { data, isLoading } = useUserQuery(uname);
-  const [isEditing, _setIsEditing] = useState(false);
+export const UserProfile: FC<UserProfileProps> = ({
+  username,
+  onEdit,
+  isMe,
+}) => {
+  const { data, isLoading } = useUserQuery(username);
 
   if (isLoading) return <div>Loading...</div>;
-  if (!data) return <div>Not found</div>;
+  if (!data) return null;
 
-  let { username, image, uAvatar, bio } = data;
-  bio =
-    bio ??
-    'Software Engineer | Full Stack Developer | React | Node.js | TypeScript | GraphQL | MongoDB | PostgreSQL | Docker | AWS | Serverless | Microservices | CI/CD | DevOps';
-  const bioEl = bio ? (
-    <div className="text-base-content mt-2">{bio}</div>
-  ) : null;
-
-  const avatarProps = {
-    uAvatar,
-    image,
-  };
-
-  let avatar = <UserAvatar {...avatarProps} />;
-  if (isEditing) {
-    avatar = <UserAvatarEdit {...avatarProps} />;
+  let { image, uAvatar, bio } = data;
+  if (!bio) {
+    bio = `404 Bio Not Found: It's like this user is in airplane mode when it comes to writing a bio!`;
   }
 
-  return (
-    <div className="max-w-sm">
-      {avatar}
-      <div className="text-center mt-4">
-        <h1 className="text-2xl font-bold">@{username}</h1>
-        {bioEl}
-      </div>
+  const button = isMe ? (
+    <button className="btn btn-primary mt-4 w-full" onClick={onEdit}>
+      Edit
+    </button>
+  ) : null;
 
-      {/* <button
-        className="btn btn-primary mt-4 w-full"
-        onClick={() => setIsEditing((prev) => !prev)}
-      >
-        {isEditing ? 'Cancel' : 'Edit'}
-      </button> */}
-    </div>
+  return (
+    <UserProfileWrapper
+      avatar={<UserAvatar uAvatar={uAvatar} image={image} />}
+      bio={<div className="text-base-content">{bio}</div>}
+      username={username}
+      button={button}
+    />
   );
 };

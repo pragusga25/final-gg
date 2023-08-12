@@ -17,6 +17,7 @@ export const UserAvatar: FC<UserAvatarProps> = ({
   const avatarProps = {
     wrapperClassName: `placeholder ${wrapperClassName}`,
     className: `ring ring-teal-400 ring-offset-base-100 ring-offset-2 bg-neutral-focus text-neutral-content w-40 tn:w-44 ${className}`,
+    placeholderClassName: 'text-4xl',
     ...props,
   };
 

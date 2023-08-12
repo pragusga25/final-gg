@@ -1,18 +1,17 @@
-import { useAuth, useLogout } from '@/hooks';
+import { useLogout, useMe } from '@/hooks';
 import { cn } from '@/utils';
 import { Link } from 'react-router-dom';
 import { Avatar } from '../Avatar';
 
 export const NavbarProfile = () => {
-  const {
-    auth: { user },
-  } = useAuth();
+  const { data, isLoading } = useMe();
+  if (isLoading) return null;
 
   const logout = useLogout();
 
-  const image = user!.image;
-  const username = user!.username;
-  const uAvatar = username.toUpperCase().slice(0, 2);
+  const image = data!.image;
+  const username = data!.username;
+  const uAvatar = data!.uAvatar;
 
   return (
     <div className="flex-none">

@@ -8,13 +8,14 @@ type AvatarProps = {
   className?: string;
   wrapperClassName?: string;
   children?: ReactNode;
+  placeholderClassName?: string;
 };
 
 export const Avatar: FC<AvatarProps> = ({ uAvatar, image, ...props }) => {
   const avatar = image ? (
     <AvatarImage image={image} {...props} />
   ) : (
-    <AvatarPlaceholder uAvatar={uAvatar} {...props} />
+    <AvatarPlaceholder {...props} uAvatar={uAvatar} />
   );
 
   return avatar;

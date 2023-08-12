@@ -8,6 +8,7 @@ import {
   GetVideosData,
   LoginData,
   RegisterData,
+  UpdateUserPayload,
 } from '@/types';
 import { LoginPayload, RegisterPayload } from '@/types';
 
@@ -52,5 +53,22 @@ export const login = (payload: LoginPayload): Promise<LoginData> =>
 export const register = (payload: RegisterPayload): Promise<RegisterData> =>
   apiPrivate.post('/auth/register', payload).then((res) => res.data.data);
 
+export const getMe = (accessToken?: string): Promise<GetUserData> =>
+  api
+    .get(`/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((res) => res.data.data);
+
 export const getUser = (username: string): Promise<GetUserData> =>
   api.get(`/users/${username}`).then((res) => res.data.data);
+
+export const updateUser = (formData: FormData, accessToken?: string) =>
+  api.patch(`/users`, formData, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });

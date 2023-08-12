@@ -21,3 +21,8 @@ export type Credentials = {
 
 export type LoginPayload = Credentials;
 export type RegisterPayload = Credentials;
+export type UpdateUserPayload = {
+  bio?: string;
+  removeImage?: boolean;
+  image: File | null;
+};
