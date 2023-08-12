@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 
 export const CommentForm = () => {
   const { id } = useParams<{ id: string }>();
-  if (!id) return <></>;
-
   const { isLoggedIn } = useAuth();
   const { isConnected } = useCommentSub(id);
   const { comment, onChange, sendComment, onEnterPress } = useCommentForm(id);

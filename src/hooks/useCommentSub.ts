@@ -5,7 +5,7 @@ import { WsComment } from '@/types';
 import { useAuth } from '@/hooks';
 import { parseCommentsData } from '@/utils';
 
-export const useCommentSub = (videoId: string) => {
+export const useCommentSub = (videoId?: string) => {
   const [isConnected, setIsConnected] = useState(false);
   const queryClient = useQueryClient();
   const {

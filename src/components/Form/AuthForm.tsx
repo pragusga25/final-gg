@@ -75,6 +75,12 @@ const Input: FC<InputProps> = ({
   className,
   type = 'text',
 }) => {
+  const errorLabel = error ? (
+    <label className="label">
+      <span className="label-text-alt ml-1 mt-2 text-red-500">{error}</span>
+    </label>
+  ) : null;
+
   return (
     <div className={cn('form-control', className)}>
       <label className="label">
@@ -88,11 +94,7 @@ const Input: FC<InputProps> = ({
         onChange={onChange}
         onKeyDown={onKeyDown}
       />
-      {!!error && (
-        <label className="label">
-          <span className="label-text-alt ml-1 mt-2 text-red-500">{error}</span>
-        </label>
-      )}
+      {errorLabel}
     </div>
   );
 };

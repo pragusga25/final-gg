@@ -3,7 +3,7 @@ import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { socket } from '../api';
 
-export const useCommentForm = (videoId: string) => {
+export const useCommentForm = (videoId?: string) => {
   const {
     auth: { accessToken },
     isLoggedIn,

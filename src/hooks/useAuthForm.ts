@@ -28,6 +28,8 @@ export const useAuthForm = (isLogin = true) => {
     if (!isLogin) {
       if (value.length < 3 && value.length > 0) {
         setUsernameError('Username must be at least 3 characters long');
+      } else if (!/^[a-zA-Z0-9]+$/.test(value) && value.length > 0) {
+        setUsernameError('Username must only contain letters and numbers');
       } else {
         setUsernameError('');
       }
@@ -48,7 +50,8 @@ export const useAuthForm = (isLogin = true) => {
   };
 
   const onEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && !disableBtn) {
+    if (e.key === 'Enter' && !disableBtn && !e.shiftKey) {
+      e.preventDefault();
       onSubmit();
     }
   };

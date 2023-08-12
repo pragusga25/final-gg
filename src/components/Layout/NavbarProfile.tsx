@@ -12,6 +12,16 @@ export const NavbarProfile = () => {
   const image = user!.image;
   const username = user!.username;
 
+  const avatar = !!image ? (
+    <div className="w-10 rounded-full">
+      <img src={image} />
+    </div>
+  ) : (
+    <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
+      <span className="text-sm">{usernamePlaceholder}</span>
+    </div>
+  );
+
   return (
     <div className="flex-none">
       <div className="mr-2 text-right">
@@ -26,16 +36,7 @@ export const NavbarProfile = () => {
             !image && 'placeholder'
           )}
         >
-          {!!image && (
-            <div className="w-10 rounded-full">
-              <img src={image} />
-            </div>
-          )}
-          {!image && (
-            <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-              <span className="text-sm">{usernamePlaceholder}</span>
-            </div>
-          )}
+          {avatar}
         </label>
         <ul
           tabIndex={0}
