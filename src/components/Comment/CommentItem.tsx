@@ -20,7 +20,6 @@ export const CommentItem = forwardRef<HTMLDivElement, CommentItemProps>(
         <div className="chat-header">
           {username}
           <time className="text-xs opacity-50 ml-2">{showTime}</time>
-          CommentAvatar
         </div>
         <div className="chat-bubble">{comment}</div>
       </div>
