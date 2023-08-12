@@ -8,7 +8,6 @@ import {
   GetVideosData,
   LoginData,
   RegisterData,
-  UpdateUserPayload,
 } from '@/types';
 import { LoginPayload, RegisterPayload } from '@/types';
 
