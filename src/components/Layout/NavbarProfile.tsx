@@ -5,9 +5,9 @@ import { Avatar } from '../Avatar';
 
 export const NavbarProfile = () => {
   const { data, isLoading } = useMe();
-  if (isLoading) return null;
-
   const logout = useLogout();
+
+  if (isLoading) return null;
 
   const image = data!.image;
   const username = data!.username;

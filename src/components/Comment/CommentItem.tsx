@@ -8,15 +8,16 @@ type CommentItemProps = {
   showTime: string;
   isMine: boolean;
   uAvatar: string;
+  image?: string;
 };
 
 export const CommentItem = forwardRef<HTMLDivElement, CommentItemProps>(
   (props, ref) => {
-    const { comment, username, showTime, isMine, uAvatar } = props;
+    const { comment, username, showTime, isMine, uAvatar, image } = props;
 
     return (
       <div className={cn('chat', isMine ? 'chat-end' : 'chat-start')} ref={ref}>
-        <CommentAvatar uAvatar={uAvatar} />
+        <CommentAvatar uAvatar={uAvatar} image={image} />
         <div className="chat-header">
           {username}
           <time className="text-xs opacity-50 ml-2">{showTime}</time>

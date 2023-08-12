@@ -28,7 +28,7 @@ export const parseCommentData = (
   data: GetCommentData,
   currentUsername?: string
 ) => {
-  const { timestamp, ...rest } = data;
+  const { timestamp, user, ...rest } = data;
   const time = new Date(timestamp);
   const isToday = time.toLocaleDateString() === new Date().toLocaleDateString();
 
@@ -45,14 +45,15 @@ export const parseCommentData = (
         minute: 'numeric',
       });
 
-  const isMine = currentUsername === rest.username;
+  const isMine = currentUsername === user.username;
 
   return {
     ...rest,
     timestamp,
     showTime,
     isMine,
-    uAvatar: rest.username.slice(0, 2).toUpperCase(),
+    uAvatar: user.username.slice(0, 2).toUpperCase(),
+    ...user,
   };
 };
 

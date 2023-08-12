@@ -19,7 +19,6 @@ export type Product = {
 export type TComment = {
   id: string;
   videoId: string;
-  username: string;
   comment: string;
   timestamp: string;
 };
