@@ -1,13 +1,13 @@
 import { useCommentModal } from '@/hooks';
-import { ContainerModal } from './ContainerModal';
-import { CommentForm } from '@/components/Form';
+import { Modal } from '@/components/Modal';
 import { CommentList } from '@/components/Comment';
+import { CommentForm } from './CommentForm';
 
 export const CommentModal = () => {
   const { closeBtnRef } = useCommentModal();
 
   return (
-    <ContainerModal
+    <Modal
       id="commentModal"
       className="max-w-lg w-full"
       closeBtnRef={closeBtnRef}
@@ -15,6 +15,6 @@ export const CommentModal = () => {
     >
       <CommentList />
       <CommentForm />
-    </ContainerModal>
+    </Modal>
   );
 };

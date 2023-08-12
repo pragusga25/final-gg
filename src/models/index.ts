@@ -13,7 +13,7 @@ export type Product = {
   price: number;
   link: string;
   videoId: string;
-  img: string;
+  image: string;
 };
 
 export type TComment = {
@@ -28,4 +28,5 @@ export type User = {
   id: string;
   username: string;
   image?: string;
+  bio?: string;
 };

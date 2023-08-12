@@ -22,6 +22,7 @@ export const VideoCard: FC<VideoCardProps> = ({
           className="w-full h-40 tn:h-48 object-cover"
           src={thumbnailUrl}
           alt={title}
+          loading="lazy"
         />
 
         <div className="px-4 py-3 h-20">

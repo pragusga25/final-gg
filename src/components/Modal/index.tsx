@@ -1,7 +1,7 @@
 import { cn } from '@/utils';
 import { RefObject, ReactNode, FC } from 'react';
 
-type ContainerModalProps = {
+type ModalProps = {
   closeBtnRef: RefObject<HTMLButtonElement>;
   children?: ReactNode;
   className?: string;
@@ -10,7 +10,7 @@ type ContainerModalProps = {
   id: string;
 };
 
-export const ContainerModal: FC<ContainerModalProps> = ({
+export const Modal: FC<ModalProps> = ({
   closeBtnRef,
   children,
   className,

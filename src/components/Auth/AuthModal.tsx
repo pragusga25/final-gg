@@ -1,6 +1,6 @@
 import { useAuthModal } from '@/hooks';
-import { AuthForm } from '@/components/Form';
-import { ContainerModal } from './ContainerModal';
+import { AuthForm } from './AuthForm';
+import { Modal } from '@/components/Modal';
 import { cn } from '@/utils';
 
 export const AuthModal = () => {
@@ -9,11 +9,7 @@ export const AuthModal = () => {
 
   const tabStyle = 'tab w-1/2 tab-bordered';
   return (
-    <ContainerModal
-      id="authModal"
-      className="max-w-md"
-      closeBtnRef={closeBtnRef}
-    >
+    <Modal id="authModal" className="max-w-md" closeBtnRef={closeBtnRef}>
       <div className="tabs w-full mb-2">
         <a
           className={cn(tabStyle, isLoginActive && 'tab-active')}
@@ -29,6 +25,6 @@ export const AuthModal = () => {
         </a>
       </div>
       <AuthForm isLogin={isLoginActive} />
-    </ContainerModal>
+    </Modal>
   );
 };

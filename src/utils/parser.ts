@@ -1,4 +1,9 @@
-import { GetCommentData, GetCommentsData, GetProductsData } from '@/types';
+import {
+  GetCommentData,
+  GetCommentsData,
+  GetProductsData,
+  GetUserData,
+} from '@/types';
 
 export const parseProductsData = (data: GetProductsData) => {
   return data.map(({ link, ...rest }) => ({
@@ -9,6 +14,14 @@ export const parseProductsData = (data: GetProductsData) => {
       currency: 'IDR',
     }).format(rest.price),
   }));
+};
+
+export const parseUserData = (data: GetUserData) => {
+  return {
+    ...data,
+    uAvatar: data.username.slice(0, 2).toUpperCase(),
+    hasImage: !!data.image,
+  };
 };
 
 export const parseCommentData = (

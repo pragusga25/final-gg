@@ -11,3 +11,4 @@ export * from './useAuthForm';
 export * from './useCommentModal';
 export * from './useCommentSub';
 export * from './useCommentForm';
+export * from './useUser';

@@ -3,6 +3,7 @@ import {
   CreateComment,
   GetCommentsData,
   GetProductsData,
+  GetUserData,
   GetVideoData,
   GetVideosData,
   LoginData,
@@ -50,3 +51,6 @@ export const login = (payload: LoginPayload): Promise<LoginData> =>
 
 export const register = (payload: RegisterPayload): Promise<RegisterData> =>
   apiPrivate.post('/auth/register', payload).then((res) => res.data.data);
+
+export const getUser = (username: string): Promise<GetUserData> =>
+  api.get(`/users/${username}`).then((res) => res.data.data);

@@ -1,5 +1,7 @@
 import { useAuth, useLogout } from '@/hooks';
 import { cn } from '@/utils';
+import { Link } from 'react-router-dom';
+import { Avatar } from '../Avatar';
 
 export const NavbarProfile = () => {
   const {
@@ -8,19 +10,9 @@ export const NavbarProfile = () => {
 
   const logout = useLogout();
 
-  const usernamePlaceholder = user!.username.toUpperCase().slice(0, 2);
   const image = user!.image;
   const username = user!.username;
-
-  const avatar = !!image ? (
-    <div className="w-10 rounded-full">
-      <img src={image} />
-    </div>
-  ) : (
-    <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-      <span className="text-sm">{usernamePlaceholder}</span>
-    </div>
-  );
+  const uAvatar = username.toUpperCase().slice(0, 2);
 
   return (
     <div className="flex-none">
@@ -32,18 +24,20 @@ export const NavbarProfile = () => {
         <label
           tabIndex={0}
           className={cn(
-            'avatar btn btn-ghost btn-circle',
+            'avatar btn btn-ghost ring btn-circle',
             !image && 'placeholder'
           )}
         >
-          {avatar}
+          <Avatar uAvatar={uAvatar} image={image} />
         </label>
         <ul
           tabIndex={0}
           className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
-            <a className="justify-between">Profile</a>
+            <Link to={`/${username}`} className="justify-between">
+              Profile
+            </Link>
           </li>
           <li onClick={logout}>
             <a>Logout</a>

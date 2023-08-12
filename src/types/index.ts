@@ -12,6 +12,7 @@ export type LoginData = {
 };
 export type RegisterData = LoginData;
 export type WsComment = GetCommentData;
+export type GetUserData = User;
 
 export type Credentials = {
   username: string;

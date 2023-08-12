@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useVideoQuery } from '@/hooks';
 import { ProductList } from '@/components/Product';
 import { CommentModalProvider } from '@/contexts';
-import { CommentModal } from '@/components/Modal';
+import { CommentModal } from '@/components/Comment';
 
 export const Watch = () => {
   const { id } = useParams<{ id: string }>();

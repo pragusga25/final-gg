@@ -1,5 +1,5 @@
 import { useAuth, useAuthModal } from '@/hooks';
-import { AuthModal } from '@/components/Modal';
+import { AuthModal } from '@/components/Auth';
 import { NavbarProfile } from './NavbarProfile';
 
 export const NavbarRight = () => {
