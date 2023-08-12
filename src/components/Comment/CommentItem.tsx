@@ -1,6 +1,7 @@
 import { cn } from '@/utils';
 import { forwardRef } from 'react';
 import { CommentAvatar } from './CommentAvatar';
+import { Link } from 'react-router-dom';
 
 type CommentItemProps = {
   comment: string;
@@ -19,7 +20,9 @@ export const CommentItem = forwardRef<HTMLDivElement, CommentItemProps>(
       <div className={cn('chat', isMine ? 'chat-end' : 'chat-start')} ref={ref}>
         <CommentAvatar uAvatar={uAvatar} image={image} />
         <div className="chat-header">
-          {username}
+          <Link to={`/${username}`} className="link link-accent">
+            {username}
+          </Link>
           <time className="text-xs opacity-50 ml-2">{showTime}</time>
         </div>
         <div className="chat-bubble">{comment}</div>
