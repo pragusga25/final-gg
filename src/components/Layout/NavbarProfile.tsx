@@ -1,7 +1,6 @@
 import { useLogout, useMe } from '@/hooks';
-import { cn } from '@/utils';
 import { Link } from 'react-router-dom';
-import { Avatar } from '../Avatar';
+import { Avatar } from '@/components/Avatar';
 
 export const NavbarProfile = () => {
   const { data, isLoading } = useMe();
@@ -15,20 +14,18 @@ export const NavbarProfile = () => {
 
   return (
     <div className="flex-none">
-      <div className="mr-2 text-right">
+      <Link to={`/${username}`} className="mr-2 text-right text-teal-400">
         <p className="font-semibold text-sm">{username}</p>
-        <p className="text-xs text-slate-300">Your Account</p>
-      </div>
+        <p className="text-xs text-teal-500">Your Account</p>
+      </Link>
       <div className="dropdown dropdown-end">
-        <label
+        <Avatar
+          uAvatar={uAvatar}
+          wrapperClassName="placeholder cursor-pointer"
+          className="w-10 rounded-full ring ring-teal-400"
+          image={image}
           tabIndex={0}
-          className={cn(
-            'avatar btn btn-ghost ring btn-circle',
-            !image && 'placeholder'
-          )}
-        >
-          <Avatar uAvatar={uAvatar} image={image} />
-        </label>
+        />
         <ul
           tabIndex={0}
           className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"

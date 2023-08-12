@@ -1,13 +1,11 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { AvatarImage } from './AvatarImage';
 import { AvatarPlaceholder } from './AvatarPlaceHolder';
+import { AvatarWrapperProps } from './AvatarWrapper';
 
-type AvatarProps = {
+type AvatarProps = AvatarWrapperProps & {
   uAvatar: string;
   image?: string;
-  className?: string;
-  wrapperClassName?: string;
-  children?: ReactNode;
   placeholderClassName?: string;
 };
 
