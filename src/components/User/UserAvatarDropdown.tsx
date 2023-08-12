@@ -37,7 +37,7 @@ export const UserAvatarDropdown: FC<UserAvatarDropdownProps> = ({
               onChange={onUpload}
               type="file"
               className="hidden"
-              accept="image/*"
+              accept="image/jpeg, image/png, image/jpg"
             />
             <span>Upload a photo...</span>
           </label>
