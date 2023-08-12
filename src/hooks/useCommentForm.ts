@@ -15,7 +15,7 @@ export const useCommentForm = (videoId?: string) => {
   const sendComment = () => {
     if (!isLoggedIn || disabled) return;
 
-    const { length } = comment;
+    const { length } = comment.trim();
     if (length === 0) toast.error('Comment cannot be empty');
     if (length > 255) toast.error('Max 255 chars per comment');
     socket.emit('comment', { comment, accessToken, videoId });
@@ -30,7 +30,7 @@ export const useCommentForm = (videoId?: string) => {
   };
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
-    setComment(e.target.value.trim());
+    setComment(e.target.value);
 
   return { comment, onChange, sendComment, onEnterPress, disabled };
 };
