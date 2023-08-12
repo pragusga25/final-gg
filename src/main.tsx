@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Toaster
         position="top-center"
         reverseOrder={false}
-        containerClassName="z-[51]"
+        containerClassName="z-[1000]"
       />
       <QueryClientProvider client={queryClient}>
         <SkeletonTheme baseColor="#202020" highlightColor="#444">
