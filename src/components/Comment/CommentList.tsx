@@ -19,10 +19,11 @@ export const CommentList = () => {
 
   return (
     <div className="overflow-y-auto mt-3" id="comments">
-      {data.map(({ isLastComment, ...rest }) => (
+      {data.map(({ isLastComment, user, ...rest }) => (
         <CommentItem
           key={rest.id}
           {...rest}
+          {...user}
           ref={isLastComment ? lastCommentRef : null}
         />
       ))}

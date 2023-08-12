@@ -53,7 +53,7 @@ export const parseCommentData = (
     showTime,
     isMine,
     uAvatar: user.username.slice(0, 2).toUpperCase(),
-    ...user,
+    user,
   };
 };
 
