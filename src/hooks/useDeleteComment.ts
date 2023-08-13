@@ -1,5 +1,5 @@
 import { useAuth } from '@/hooks';
-import { socket } from '../api';
+import { socket } from '@/api';
 import { useParams } from 'react-router-dom';
 
 export const useDeleteComment = () => {

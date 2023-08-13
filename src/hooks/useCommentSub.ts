@@ -22,6 +22,7 @@ export const useCommentSub = (videoId?: string) => {
     };
 
     const onComment = (data: WsComment) => {
+      console.log('NEW DATA: ', data);
       queryClient.setQueryData(
         [videoId, 'comments', user?.username],
         (oldData: WsComment[] | undefined) => {
@@ -51,6 +52,7 @@ export const useCommentSub = (videoId?: string) => {
       socket.off('connect', onConnect);
       socket.off('disconnect', onDisconnect);
       socket.off(`${videoId}:comment`, onComment);
+      socket.off(`${videoId}:comment:deleted`, onCommentDeleted);
     };
   }, [queryClient, videoId, socket, accessToken]);
 
