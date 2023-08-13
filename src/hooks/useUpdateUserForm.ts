@@ -3,13 +3,13 @@ import { UpdateUserPayload } from '@/types';
 import { ChangeEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 
-export const useUpdateUserForm = () => {
+type Cb = () => unknown;
+
+export const useUpdateUserForm = (cb?: Cb) => {
   const queryClient = useQueryClient();
   const { data } = useMe();
   const { mutate } = useUpdateUser();
-  const navigate = useNavigate();
 
   const defaultBio = data?.bio;
   const defaultImage = data?.image;
@@ -65,9 +65,12 @@ export const useUpdateUserForm = () => {
     if (image) formData.append('image', image);
     if (removeImage) formData.append('removeImage', 'true');
 
+    queryClient.invalidateQueries({
+      queryKey: ['me'],
+    });
+
     mutate(formData);
-    queryClient.invalidateQueries(['me']);
-    navigate(0);
+    if (cb) cb();
   };
 
   const onRemoveImage = () => {

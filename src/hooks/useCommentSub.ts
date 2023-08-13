@@ -22,7 +22,6 @@ export const useCommentSub = (videoId?: string) => {
     };
 
     const onComment = (data: WsComment) => {
-      console.log('NEW DATA: ', data);
       queryClient.setQueryData(
         [videoId, 'comments', user?.username],
         (oldData: WsComment[] | undefined) => {

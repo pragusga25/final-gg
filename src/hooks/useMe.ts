@@ -9,6 +9,7 @@ export const useMe = () => {
   } = useAuth();
   const query = useQuery(['me'], {
     queryFn: () => getMe(accessToken).then(parseUserData),
+    staleTime: 5000, // 5 seconds
   });
 
   return query;
