@@ -33,9 +33,21 @@ export const useCommentSub = (videoId?: string) => {
       );
     };
 
+    const onCommentDeleted = ({ id }: { id: string }) => {
+      queryClient.setQueryData(
+        [videoId, 'comments', user?.username],
+        (oldData: WsComment[] | undefined) => {
+          if (!oldData) return [];
+          const filteredData = oldData.filter((comment) => comment.id !== id);
+          return parseCommentsData(filteredData, user?.username);
+        }
+      );
+    };
+
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
     socket.on(`${videoId}:comment`, onComment);
+    socket.on(`${videoId}:comment:deleted`, onCommentDeleted);
 
     return () => {
       socket.off('connect', onConnect);

@@ -17,3 +17,4 @@ export * from './useRegisterForm';
 export * from './useUpdateUser';
 export * from './useUpdateUserForm';
 export * from './useMe';
+export * from './useDeleteComment';
