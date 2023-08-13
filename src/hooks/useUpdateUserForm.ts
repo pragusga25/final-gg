@@ -2,14 +2,10 @@ import { useMe, useUpdateUser } from '@/hooks';
 import { UpdateUserPayload } from '@/types';
 import { ChangeEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useQueryClient } from '@tanstack/react-query';
 
-type Cb = () => unknown;
-
-export const useUpdateUserForm = (cb?: Cb) => {
-  const queryClient = useQueryClient();
+export const useUpdateUserForm = () => {
   const { data } = useMe();
-  const { mutate } = useUpdateUser();
+  const { mutate } = useUpdateUser(true);
 
   const defaultBio = data?.bio;
   const defaultImage = data?.image;
@@ -65,11 +61,7 @@ export const useUpdateUserForm = (cb?: Cb) => {
     if (image) formData.append('image', image);
     if (removeImage) formData.append('removeImage', 'true');
 
-    queryClient.invalidateQueries(['me']);
-
     mutate(formData);
-    if (imageChanged) window.location.reload();
-    if (cb && !imageChanged) cb();
   };
 
   const onRemoveImage = () => {

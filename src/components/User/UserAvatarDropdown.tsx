@@ -10,7 +10,7 @@ export const UserAvatarDropdown: FC<UserAvatarDropdownProps> = ({
   onRemove,
 }) => {
   return (
-    <div className="dropdown dropdown-end absolute bottom-0 left-0 ml-2 mb-2 border p-1.5 rounded-lg py-1 px-2 bg-neutral-focus cursor-pointer">
+    <div className="dropdown dropdown-end absolute bottom-0 left-0 ml-2 mb-2 border rounded-lg py-1 px-2 bg-neutral-focus cursor-pointer">
       <label tabIndex={0} className="flex m-1 cursor-pointer">
         <svg
           aria-hidden="true"

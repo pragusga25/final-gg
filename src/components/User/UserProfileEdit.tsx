@@ -24,7 +24,7 @@ export const UserProfileEdit: FC<UserProfileEditProps> = ({
     onRemoveImage,
     previewImage,
     payload: { bio },
-  } = useUpdateUserForm(onCancel);
+  } = useUpdateUserForm();
 
   const { uAvatar } = data;
 
