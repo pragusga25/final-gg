@@ -15,16 +15,13 @@ export const useCommentSub = (videoId?: string) => {
   useEffect(() => {
     const onConnect = () => {
       setIsConnected(true);
-      console.log('connected');
     };
 
     const onDisconnect = () => {
       setIsConnected(false);
-      console.log('disconnected');
     };
 
     const onComment = (data: WsComment) => {
-      console.log('NEW COMMENT: ', data);
       queryClient.setQueryData(
         [videoId, 'comments', user?.username],
         (oldData: WsComment[] | undefined) => {

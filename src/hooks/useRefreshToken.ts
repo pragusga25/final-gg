@@ -26,8 +26,6 @@ export const useRefreshToken = () => {
         ) {
           await logout();
         }
-
-        console.log('ERROR REFRESH: ', error.response?.data);
       }
     }
   };

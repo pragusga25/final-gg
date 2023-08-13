@@ -21,7 +21,6 @@ export const useLogout = () => {
         withCredentials: true,
       });
     } catch (err) {
-      console.error(err);
     } finally {
       setAuth({});
       queryClient.clear();
