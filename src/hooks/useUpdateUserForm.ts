@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 
 export const useUpdateUserForm = () => {
   const { data } = useMe();
-  const { mutate } = useUpdateUser();
+  const { mutate } = useUpdateUser(true);
 
   const defaultBio = data?.bio;
   const defaultImage = data?.image;
