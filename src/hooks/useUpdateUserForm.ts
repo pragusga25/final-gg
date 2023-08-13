@@ -65,12 +65,11 @@ export const useUpdateUserForm = (cb?: Cb) => {
     if (image) formData.append('image', image);
     if (removeImage) formData.append('removeImage', 'true');
 
-    queryClient.invalidateQueries({
-      queryKey: ['me'],
-    });
+    queryClient.invalidateQueries(['me']);
 
     mutate(formData);
-    if (cb) cb();
+    if (imageChanged) window.location.reload();
+    if (cb && !imageChanged) cb();
   };
 
   const onRemoveImage = () => {
