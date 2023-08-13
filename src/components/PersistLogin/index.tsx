@@ -7,8 +7,8 @@ type PersistLoginProps = {
 };
 
 export const PersistLogin: FC<PersistLoginProps> = ({ children }) => {
-  let { isLoading } = usePersistLogin();
-  isLoading = true;
+  const { isLoading } = usePersistLogin();
+
   if (isLoading) return <PersistLoginLoader />;
 
   return children;
