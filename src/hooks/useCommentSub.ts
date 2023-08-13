@@ -9,7 +9,7 @@ export const useCommentSub = (videoId?: string) => {
   const [isConnected, setIsConnected] = useState(false);
   const queryClient = useQueryClient();
   const {
-    auth: { user },
+    auth: { user, accessToken },
   } = useAuth();
 
   useEffect(() => {
@@ -24,6 +24,7 @@ export const useCommentSub = (videoId?: string) => {
     };
 
     const onComment = (data: WsComment) => {
+      console.log('NEW COMMENT: ', data);
       queryClient.setQueryData(
         [videoId, 'comments', user?.username],
         (oldData: WsComment[] | undefined) => {
@@ -54,7 +55,7 @@ export const useCommentSub = (videoId?: string) => {
       socket.off('disconnect', onDisconnect);
       socket.off(`${videoId}:comment`, onComment);
     };
-  }, [queryClient, videoId, socket]);
+  }, [queryClient, videoId, socket, accessToken]);
 
   return { isConnected };
 };
