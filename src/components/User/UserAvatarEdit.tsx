@@ -16,5 +16,5 @@ export const UserAvatarEdit: FC<UserAvatarEditProps> = ({
     <UserAvatarDropdown onRemove={onRemove} onUpload={onUpload} />
   );
 
-  return <UserAvatar {...props} children={dropdown} />;
+  return <UserAvatar {...props} children={dropdown} isEditMode />;
 };

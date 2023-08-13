@@ -28,4 +28,5 @@ export type User = {
   username: string;
   image?: string;
   bio?: string;
+  isOnline: boolean;
 };

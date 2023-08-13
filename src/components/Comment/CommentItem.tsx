@@ -12,6 +12,7 @@ type CommentItemProps = {
   uAvatar: string;
   image?: string;
   id: string;
+  isOnline: boolean;
 };
 
 export const CommentItem = forwardRef<HTMLDivElement, CommentItemProps>(

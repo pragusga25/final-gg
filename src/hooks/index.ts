@@ -18,3 +18,4 @@ export * from './useUpdateUser';
 export * from './useUpdateUserForm';
 export * from './useMe';
 export * from './useDeleteComment';
+export * from './useNavigatorOnline';

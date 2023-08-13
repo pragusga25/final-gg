@@ -32,7 +32,13 @@ export const UserProfile: FC<UserProfileProps> = ({
 
   return (
     <UserProfileWrapper
-      avatar={<UserAvatar uAvatar={uAvatar} image={image} />}
+      avatar={
+        <UserAvatar
+          uAvatar={uAvatar}
+          image={image}
+          isOnline={isMe || data.isOnline}
+        />
+      }
       bio={<div className="text-base-content">{bio}</div>}
       username={username}
       button={button}

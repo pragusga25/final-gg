@@ -1,7 +1,9 @@
 import { Outlet } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
+import { useNavigatorOnLine } from '@/hooks';
 
 export const Layout = () => {
+  useNavigatorOnLine();
   return (
     <div className="min-h-screen">
       <Navbar />

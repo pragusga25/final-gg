@@ -6,16 +6,14 @@ import { useAuth } from '@/hooks';
 
 export const User = () => {
   const { username } = useParams<{ username: string }>();
-
-  if (!username) return null;
-
   const {
     auth: { user },
   } = useAuth();
+  const [isEditing, setIsEditing] = useState(false);
+
+  if (!username) return null;
 
   const isMe = user?.username === username;
-
-  const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((prev) => !prev);
 

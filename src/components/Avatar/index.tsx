@@ -7,6 +7,7 @@ type AvatarProps = AvatarWrapperProps & {
   uAvatar: string;
   image?: string;
   placeholderClassName?: string;
+  wrapperClassName?: string;
 };
 
 export const Avatar: FC<AvatarProps> = ({ uAvatar, image, ...props }) => {

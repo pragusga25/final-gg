@@ -8,7 +8,7 @@ type CommentAvatarProps = {
 
 export const CommentAvatar: FC<CommentAvatarProps> = ({ ...props }) => {
   const avatarProps = {
-    wrapperClassName: 'chat-image placeholder',
+    wrapperClassName: `chat-image placeholder`,
     className: 'bg-neutral-focus text-neutral-content w-10',
     ...props,
   };
