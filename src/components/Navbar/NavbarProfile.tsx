@@ -15,7 +15,7 @@ export const NavbarProfile = () => {
   return (
     <div className="flex-none">
       <Link to={`/${username}`} className="mr-2 text-right text-teal-400">
-        <p className="font-semibold text-sm">{username}</p>
+        <p className="font-semibold text-sm">@{username}</p>
         <p className="text-xs text-teal-500">Your Account</p>
       </Link>
       <div className="dropdown dropdown-end">

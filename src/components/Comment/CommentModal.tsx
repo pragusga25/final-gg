@@ -9,7 +9,7 @@ export const CommentModal = () => {
   return (
     <Modal
       id="commentModal"
-      className="max-w-lg w-full"
+      className="max-w-lg w-full modal-bottom xs:modal-middle"
       closeBtnRef={closeBtnRef}
       modalBoxClassName="overflow-hidden flex flex-col"
     >
