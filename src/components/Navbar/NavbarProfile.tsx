@@ -15,11 +15,14 @@ export const NavbarProfile = () => {
 
   return (
     <div className="flex-none">
-      <Link to={`/${username}`} className="mr-2 text-right text-teal-400">
-        <p className="font-semibold text-sm">@{username}</p>
-        <p className="text-xs text-teal-500">Your Account</p>
-      </Link>
-      <div className="dropdown dropdown-end">
+      <div className="dropdown dropdown-end flex">
+        <div
+          tabIndex={0}
+          className="mr-2 cursor-pointer text-right text-teal-400"
+        >
+          <p className="font-semibold text-sm">@{username}</p>
+          <p className="text-xs text-teal-500">Your Account</p>
+        </div>
         <Avatar
           uAvatar={uAvatar}
           wrapperClassName="placeholder cursor-pointer"
@@ -29,7 +32,7 @@ export const NavbarProfile = () => {
         />
         <ul
           tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          className="menu menu-sm dropdown-content mt-12 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
             <Link to={`/${username}`} className="justify-between">

@@ -58,9 +58,9 @@ export const useUpdateUserForm = () => {
     }
 
     bio = bio?.trim();
-    if (bio && bio.length === 0) return toast.error('Bio cannot be empty');
+    if (typeof bio === 'string' && bio.length === 0) bio = undefined;
 
-    if (bio) formData.append('bio', bio.trim());
+    if (bio) formData.append('bio', bio);
     if (image) formData.append('image', image);
     if (removeImage) formData.append('removeImage', 'true');
 
