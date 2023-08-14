@@ -48,7 +48,7 @@ export const useUpdateUserForm = () => {
 
   const onSave = async () => {
     const formData = new FormData();
-    const { bio, image, removeImage } = payload;
+    let { bio, image, removeImage } = payload;
 
     const isPayloadChanged = bio !== defaultBio || imageChanged;
 
@@ -57,7 +57,10 @@ export const useUpdateUserForm = () => {
       return;
     }
 
-    if (bio) formData.append('bio', bio);
+    bio = bio?.trim();
+    if (bio && bio.length === 0) return toast.error('Bio cannot be empty');
+
+    if (bio) formData.append('bio', bio.trim());
     if (image) formData.append('image', image);
     if (removeImage) formData.append('removeImage', 'true');
 
