@@ -107,8 +107,8 @@ Before running the TKP (Tokopedia Play) frontend application locally, ensure tha
 
 ### Installation
 
-1. Clone the repository: `git clone https://github.com/pragusga25/tkp.git`
-2. Navigate to the project folder: `cd tkp`
+1. Clone the repository: `git clone https://github.com/pragusga25/final-gg.git`
+2. Navigate to the project folder: `cd final-gg`
 3. Install dependencies: `yarn`
 
 ### Environment Variables
@@ -151,4 +151,4 @@ Open your web browser and visit `http://localhost:5173` to access the applicatio
 
 ## Deployment
 
-The project has been deployed and can be accessed at [https://www.tkp.tech](https://www.tkp.tech).
+The project has been deployed and can be accessed at [https://www.tkp3.tech](https://www.tkp3.tech).
