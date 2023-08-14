@@ -6,7 +6,8 @@ export const NavbarProfile = () => {
   const { data, isLoading } = useMe();
   const logout = useLogout();
 
-  if (isLoading) return null;
+  if (isLoading)
+    return <span className="loading loading-spinner text-success loading-sm" />;
 
   const image = data!.image;
   const username = data!.username;

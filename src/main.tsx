@@ -9,6 +9,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { PersistLogin } from '@/components/PersistLogin';
 import { AuthModalProvider, AuthProvider } from '@/contexts';
 import { Toaster } from 'react-hot-toast';
+import { inject } from '@vercel/analytics';
+
+inject();
 
 const queryClient = new QueryClient({
   defaultOptions: {
