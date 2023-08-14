@@ -3,7 +3,7 @@ import { Product, TComment, User, Video } from '@/models';
 export type GetVideosData = Omit<Video, 'embededYoutubeUrl'>[];
 export type GetVideoData = Video;
 export type GetCommentData = Omit<TComment, 'videoId'> & {
-  user: Omit<User, 'bio'>;
+  user?: Omit<User, 'bio'>;
 };
 export type GetCommentsData = GetCommentData[];
 export type GetProductsData = Omit<Product, 'videoId'>[];

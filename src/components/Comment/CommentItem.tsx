@@ -6,18 +6,30 @@ import { useDeleteComment } from '@/hooks';
 
 type CommentItemProps = {
   comment: string;
-  username: string;
+  username?: string;
   showTime: string;
   isMine: boolean;
-  uAvatar: string;
+  uAvatar?: string;
   image?: string;
   id: string;
-  isOnline: boolean;
+  isOnline?: boolean;
+  isGuest: boolean;
+  guestUsername?: string;
 };
 
 export const CommentItem = forwardRef<HTMLDivElement, CommentItemProps>(
   (props, ref) => {
-    const { comment, username, showTime, isMine, uAvatar, image, id } = props;
+    const {
+      comment,
+      username,
+      showTime,
+      isMine,
+      uAvatar,
+      image,
+      id,
+      isGuest,
+      guestUsername,
+    } = props;
 
     const { onDelete } = useDeleteComment();
 
@@ -30,13 +42,19 @@ export const CommentItem = forwardRef<HTMLDivElement, CommentItemProps>(
       </div>
     ) : null;
 
+    const usernameEl = isGuest ? (
+      <span className="text-blue-600">{guestUsername}</span>
+    ) : (
+      <Link to={`/${username}`} className="link link-accent">
+        @{username}
+      </Link>
+    );
+
     return (
       <div className={cn('chat', isMine ? 'chat-end' : 'chat-start')} ref={ref}>
         <CommentAvatar uAvatar={uAvatar} image={image} />
         <div className="chat-header">
-          <Link to={`/${username}`} className="link link-accent">
-            @{username}
-          </Link>
+          {usernameEl}
           <time className="text-xs opacity-50 ml-2">{showTime}</time>
         </div>
         <div className="chat-bubble">{comment}</div>

@@ -6,9 +6,8 @@ import {
 } from '@/types';
 
 export const parseProductsData = (data: GetProductsData) => {
-  return data.map(({ link, ...rest }) => ({
+  return data.map(({ ...rest }) => ({
     ...rest,
-    link: link.includes('https://') ? link : `https://www.tokopedia.com${link}`,
     formattedPriceIdr: new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
@@ -46,15 +45,16 @@ export const parseCommentData = (
         minute: 'numeric',
       });
 
-  const isMine = currentUsername === user.username;
+  const isMine = !!currentUsername && currentUsername === user?.username;
 
   return {
     ...rest,
     timestamp,
     showTime,
     isMine,
-    uAvatar: user.username.slice(0, 2).toUpperCase(),
+    uAvatar: user?.username.slice(0, 2).toUpperCase(),
     user,
+    isGuest: !!rest.guestUsername,
   };
 };
 

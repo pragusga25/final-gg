@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import { AvatarWrapper, AvatarWrapperProps } from './AvatarWrapper';
 
 type AvatarPlaceholderProps = AvatarWrapperProps & {
-  uAvatar: string;
+  uAvatar?: string;
   children?: ReactNode;
   placeholderClassName?: string;
 };

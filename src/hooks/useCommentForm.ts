@@ -2,6 +2,7 @@ import { useAuth } from '@/hooks';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { socket } from '@/api';
+import { validateUsername } from '@/utils';
 
 export const useCommentForm = (videoId?: string) => {
   const {
@@ -10,27 +11,56 @@ export const useCommentForm = (videoId?: string) => {
   } = useAuth();
 
   const [comment, setComment] = useState('');
-  const disabled = comment.length === 0 || comment.length > 255;
+  const [username, setUsername] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [guestMode, setGuestMode] = useState(!isLoggedIn);
+  const disabled =
+    comment.length === 0 || comment.length > 255 || usernameError;
 
   const sendComment = () => {
-    if (!isLoggedIn || disabled) return;
+    if (disabled) return;
 
     const { length } = comment.trim();
     if (length === 0) toast.error('Comment cannot be empty');
     if (length > 255) toast.error('Max 255 chars per comment');
-    socket.emit('comment', { comment, accessToken, videoId });
+    socket.emit('comment', {
+      comment,
+      accessToken: guestMode ? undefined : accessToken,
+      videoId,
+      guestUsername: guestMode ? username : undefined,
+    });
     setComment('');
   };
 
-  const onEnterPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  const toggleGuestMode = () => setGuestMode((prev) => !prev);
+
+  const onEnterPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendComment();
     }
   };
 
-  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
+  const onCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
     setComment(e.target.value);
 
-  return { comment, onChange, sendComment, onEnterPress, disabled };
+  const onUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+    const err = validateUsername(e.target.value);
+    if (err) setUsernameError(err);
+    else setUsernameError('');
+  };
+
+  return {
+    comment,
+    onCommentChange,
+    sendComment,
+    onEnterPress,
+    disabled,
+    username,
+    onUsernameChange,
+    guestMode,
+    toggleGuestMode,
+    usernameError,
+  };
 };

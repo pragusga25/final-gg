@@ -21,6 +21,7 @@ export type TComment = {
   videoId: string;
   comment: string;
   timestamp: string;
+  guestUsername?: string;
 };
 
 export type User = {

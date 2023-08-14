@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Avatar } from '@/components/Avatar';
 
 type CommentAvatarProps = {
-  uAvatar: string;
+  uAvatar?: string;
   image?: string;
 };
 

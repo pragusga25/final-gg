@@ -4,7 +4,7 @@ import { AvatarPlaceholder } from './AvatarPlaceHolder';
 import { AvatarWrapperProps } from './AvatarWrapper';
 
 type AvatarProps = AvatarWrapperProps & {
-  uAvatar: string;
+  uAvatar?: string;
   image?: string;
   placeholderClassName?: string;
   wrapperClassName?: string;
