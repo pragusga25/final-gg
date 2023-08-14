@@ -20,7 +20,9 @@ export const useLogout = () => {
       await apiPrivate.get('/auth/logout', {
         withCredentials: true,
       });
-    } catch (err) {
+    } catch {
+      // we don't care about the error
+      // we dont't want the user stuck in the app
     } finally {
       setAuth({});
       queryClient.clear();
