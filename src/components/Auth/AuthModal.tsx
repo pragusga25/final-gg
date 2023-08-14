@@ -1,29 +1,14 @@
 import { useAuthModal } from '@/hooks';
 import { AuthForm } from './AuthForm';
 import { Modal } from '@/components/Modal';
-import { cn } from '@/utils';
+import { AuthModalTabs } from './AuthModalTabs';
 
 export const AuthModal = () => {
-  const { isLoginActive, onLoginTabClick, onRegisterTabClick, closeBtnRef } =
-    useAuthModal();
+  const { isLoginActive, closeBtnRef } = useAuthModal();
 
-  const tabStyle = 'tab w-1/2 tab-bordered';
   return (
     <Modal id="authModal" className="max-w-md" closeBtnRef={closeBtnRef}>
-      <div className="tabs w-full mb-2">
-        <a
-          className={cn(tabStyle, isLoginActive && 'tab-active')}
-          onClick={onLoginTabClick}
-        >
-          Login
-        </a>
-        <a
-          className={cn(tabStyle, !isLoginActive && 'tab-active')}
-          onClick={onRegisterTabClick}
-        >
-          Register
-        </a>
-      </div>
+      <AuthModalTabs />
       <AuthForm isLogin={isLoginActive} />
     </Modal>
   );

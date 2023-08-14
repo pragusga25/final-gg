@@ -1,16 +1,15 @@
-import { useCommentModal } from '@/hooks';
-import { Video } from '@/models';
-import { FC } from 'react';
+import { useCommentModal, useVideoQuery } from '@/hooks';
+import { useParams } from 'react-router-dom';
+import { VideoPlayerLoader } from './VideoPlayerLoader';
 
-type VideoPlayerProps = Video;
-
-export const VideoPlayer: FC<VideoPlayerProps> = ({
-  embededYoutubeUrl,
-  title,
-  description,
-  thumbnailColor,
-}) => {
+export const VideoPlayer = () => {
+  const { id } = useParams<{ id: string }>();
+  const { data, isLoading } = useVideoQuery(id!);
   const { onOpen } = useCommentModal();
+
+  if (isLoading || !data) return <VideoPlayerLoader />;
+
+  const { title, description, embededYoutubeUrl, thumbnailColor } = data;
 
   return (
     <div className="mx-auto text-white">

@@ -2,23 +2,24 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { UserProfile } from './UserProfile';
 import { UserProfileEdit } from './UserProfileEdit';
-import { useAuth } from '@/hooks';
+import { useUserQuery } from '@/hooks';
+import { NotFound } from '@/components/NotFound';
+import { Spinner } from '@/components//Spinner';
 
 export const User = () => {
   const { username } = useParams<{ username: string }>();
-  const {
-    auth: { user },
-  } = useAuth();
+  const { data, isLoading, isError } = useUserQuery(username!);
   const [isEditing, setIsEditing] = useState(false);
 
-  if (!username) return null;
+  if (isLoading) return <Spinner />;
+  if (isError) return <NotFound />;
 
-  const isMe = user?.username === username;
+  const isMe = data?.isMe ?? false;
 
   const toggleEdit = () => setIsEditing((prev) => !prev);
 
   if (isEditing && isMe)
-    return <UserProfileEdit username={username} onCancel={toggleEdit} />;
+    return <UserProfileEdit username={username!} onCancel={toggleEdit} />;
 
-  return <UserProfile username={username} onEdit={toggleEdit} isMe={isMe} />;
+  return <UserProfile username={username!} onEdit={toggleEdit} isMe={isMe} />;
 };

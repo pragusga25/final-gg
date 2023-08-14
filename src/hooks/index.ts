@@ -6,7 +6,6 @@ export * from './useApiPrivate';
 export * from './useRefreshToken';
 export * from './usePersistLogin';
 export * from './useAuthModal';
-export * from './useAuthForm';
 export * from './useCommentModal';
 export * from './useCommentSub';
 export * from './useCommentForm';

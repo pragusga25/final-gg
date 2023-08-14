@@ -1,5 +1,6 @@
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { useRegister } from '@/hooks';
+import { validatePassword, validateUsername } from '@/utils';
 
 // WARN: Unused code
 export const useRegisterForm = () => {
@@ -25,24 +26,18 @@ export const useRegisterForm = () => {
     value = value.replace(/\s+/g, '').trim();
     setCreds((prevState) => ({ ...prevState, username: value }));
 
-    if (value.length < 3 && value.length > 0) {
-      setUsernameError('Username must be at least 3 characters long');
-    } else if (!/^[a-zA-Z0-9]+$/.test(value) && value.length > 0) {
-      setUsernameError('Username must only contain letters and numbers');
-    } else {
-      setUsernameError('');
-    }
+    const err = validateUsername(value);
+    if (err) setUsernameError(err);
+    else setUsernameError('');
   };
 
   const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setCreds((prevState) => ({ ...prevState, password: value }));
 
-    if (value.length < 8 && value.length > 0) {
-      setPasswordError('Password must be at least 8 characters long');
-    } else {
-      setPasswordError('');
-    }
+    const err = validatePassword(value);
+    if (err) setPasswordError(err);
+    else setPasswordError('');
   };
 
   const onEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {

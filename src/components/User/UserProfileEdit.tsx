@@ -12,9 +12,8 @@ export const UserProfileEdit: FC<UserProfileEditProps> = ({
   username,
   onCancel,
 }) => {
-  const { data, isLoading } = useUserQuery(username);
+  const { data } = useUserQuery(username);
 
-  if (isLoading) return <div>Loading...</div>;
   if (!data) return null;
 
   const {

@@ -16,11 +16,12 @@ export const parseProductsData = (data: GetProductsData) => {
   }));
 };
 
-export const parseUserData = (data: GetUserData) => {
+export const parseUserData = (data: GetUserData, currentUserId?: string) => {
   return {
     ...data,
     uAvatar: data.username.slice(0, 2).toUpperCase(),
     hasImage: !!data.image,
+    isMe: currentUserId === data.id,
   };
 };
 

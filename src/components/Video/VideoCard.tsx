@@ -1,6 +1,7 @@
 import { Video } from '@/models';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { VideoCardWrapper } from './VideoCardWrapper';
 
 type VideoCardProps = Omit<Video, 'embededYoutubeUrl' | 'description'>;
 
@@ -12,12 +13,7 @@ export const VideoCard: FC<VideoCardProps> = ({
 }) => {
   return (
     <Link to={`/watch/${id}`}>
-      <div
-        className={`w-full bg:max-w-lg mx-auto cursor-pointer mb-6 bg-gray-800 rounded-lg overflow-hidden dark:bg-gray-900`}
-        style={{
-          boxShadow: `1px 9px 73px -17px ${thumbnailColor}`,
-        }}
-      >
+      <VideoCardWrapper thumbnailColor={thumbnailColor}>
         <img
           className="w-full h-40 tn:h-48 object-cover"
           src={thumbnailUrl}
@@ -30,7 +26,7 @@ export const VideoCard: FC<VideoCardProps> = ({
             {title}
           </h3>
         </div>
-      </div>
+      </VideoCardWrapper>
     </Link>
   );
 };

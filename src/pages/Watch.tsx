@@ -1,20 +1,20 @@
 import { VideoPlayer } from '@/components/Video';
-import { Navigate, useParams } from 'react-router-dom';
-import { useVideoQuery } from '@/hooks';
 import { ProductList } from '@/components/Product';
 import { CommentModalProvider } from '@/contexts';
 import { CommentModal } from '@/components/Comment';
+import { useParams } from 'react-router-dom';
+import { useVideoQuery } from '@/hooks';
+import { NotFound } from '@/components/NotFound';
 
-export const Watch = () => {
+export const WatchPage = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading } = useVideoQuery(id!);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (!data) return <Navigate to="/" />;
+  if (!isLoading && !data) return <NotFound className="-mt-24 min-h-screen" />;
 
   return (
     <CommentModalProvider>
-      <VideoPlayer {...data} />
+      <VideoPlayer />
       <div className="mt-8 pb-5">
         <ProductList />
       </div>

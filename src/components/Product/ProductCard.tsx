@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { ProductCardWrapper } from './ProductCardWrapper';
 
 type ProductCardProps = {
   title: string;
@@ -14,7 +15,7 @@ export const ProductCard: FC<ProductCardProps> = ({
   link,
 }) => {
   return (
-    <div className="card w-[240px] tn:w-80 mx-auto bg-base-100 shadow-xl shadow-slate-700 rounded-md overflow-hidden">
+    <ProductCardWrapper>
       <img
         src={image}
         alt={title}
@@ -30,6 +31,6 @@ export const ProductCard: FC<ProductCardProps> = ({
           </a>
         </div>
       </div>
-    </div>
+    </ProductCardWrapper>
   );
 };

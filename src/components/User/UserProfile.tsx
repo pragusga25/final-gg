@@ -14,9 +14,8 @@ export const UserProfile: FC<UserProfileProps> = ({
   onEdit,
   isMe,
 }) => {
-  const { data, isLoading } = useUserQuery(username);
+  const { data } = useUserQuery(username);
 
-  if (isLoading) return <div>Loading...</div>;
   if (!data) return null;
 
   let { image, uAvatar, bio } = data;

@@ -38,6 +38,7 @@ export const AuthInput: FC<AuthInputProps> = ({
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        autoComplete="on"
       />
       {errorLabel}
     </div>

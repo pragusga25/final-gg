@@ -10,14 +10,8 @@ export const useLoginForm = () => {
     password: '',
   });
 
-  const [errors, _setErrors] = useState({
-    username: '',
-    password: '',
-  });
-
   const onUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let { value } = e.target;
-    value = value.replace(/\s+/g, '').trim();
+    const { value } = e.target;
     setCreds((prevState) => ({ ...prevState, username: value }));
   };
 
@@ -42,15 +36,11 @@ export const useLoginForm = () => {
     resetCreds();
   };
 
-  const disableBtn =
-    !!errors.username ||
-    !!errors.password ||
-    !creds.username ||
-    !creds.password;
+  const disableBtn = !creds.username || !creds.password;
 
   return {
     creds,
-    errors,
+
     onUsernameChange,
     onPasswordChange,
     onSubmit,
